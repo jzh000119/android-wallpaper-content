@@ -42,3 +42,7 @@ The publisher refuses to overwrite an existing output. Run its contract tests be
 ```text
 python3 -m unittest tools/test_build_channel_config.py
 ```
+
+When updating `current.json`, the publisher requires both a new `configId` and a strictly newer
+`publishedAtEpochMillis`; it refuses to publish the immutable output if the mutable pointer would
+move backward or rewrite the same ID.

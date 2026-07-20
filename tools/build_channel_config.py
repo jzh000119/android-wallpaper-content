@@ -91,10 +91,20 @@ def build(
         raise ChannelConfigBuildError("INVALID_CONFIG: config id is invalid")
     if output_path.exists():
         raise ChannelConfigBuildError(f"PUBLISH_FAILED: refusing to overwrite immutable output: {output_path}")
+    if current_output is not None and output_path.resolve() == current_output.resolve():
+        raise ChannelConfigBuildError("PUBLISH_FAILED: current pointer must not be the immutable output")
     config = validate(read_json(input_path))
     timestamp = int(time.time() * 1000) if published_at is None else int(published_at)
     if timestamp <= 0:
         raise ChannelConfigBuildError("INVALID_CONFIG: published timestamp must be positive")
+    if current_output is not None and current_output.exists():
+        current = read_json(current_output)
+        current_id = current.get("configId")
+        current_timestamp = current.get("publishedAtEpochMillis")
+        if not isinstance(current_id, str) or not IDENTIFIER.fullmatch(current_id) or not isinstance(current_timestamp, int):
+            raise ChannelConfigBuildError("PUBLISH_FAILED: current pointer is invalid")
+        if current_id == config_id or timestamp <= current_timestamp:
+            raise ChannelConfigBuildError("PUBLISH_FAILED: current pointer must advance id and timestamp")
     payload = {
         "schemaVersion": 1,
         "configId": config_id,

@@ -72,6 +72,19 @@ class ChannelConfigPublisherTest(unittest.TestCase):
         self.assertTrue(second_output.exists())
         self.assertEqual("2026-07-20.2", json.loads(self.current.read_text(encoding="utf-8"))["configId"])
 
+    def test_current_pointer_rejectsSameIdOrNonMonotonicTimestampBeforePublishing(self):
+        self.module.build(self.input, "2026-07-20.1", self.output, published_at=2, current_output=self.current)
+        same_id_output = self.root / "same-id.json"
+
+        with self.assertRaisesRegex(self.module.ChannelConfigBuildError, "current pointer must advance"):
+            self.module.build(self.input, "2026-07-20.1", same_id_output, published_at=3, current_output=self.current)
+        self.assertFalse(same_id_output.exists())
+
+        rollback_output = self.root / "rollback.json"
+        with self.assertRaisesRegex(self.module.ChannelConfigBuildError, "current pointer must advance"):
+            self.module.build(self.input, "2026-07-20.2", rollback_output, published_at=2, current_output=self.current)
+        self.assertFalse(rollback_output.exists())
+
     def test_duplicate_channel_id_fails_without_output(self):
         config = json.loads(self.input.read_text(encoding="utf-8"))
         config["channels"].append(dict(config["channels"][0]))

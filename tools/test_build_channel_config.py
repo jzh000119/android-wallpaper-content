@@ -22,6 +22,7 @@ class ChannelConfigPublisherTest(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.input = self.root / "channels.json"
         self.output = self.root / "channel-config.json"
+        self.current = self.root / "current.json"
         self.input.write_text(
             json.dumps(
                 {
@@ -45,7 +46,13 @@ class ChannelConfigPublisherTest(unittest.TestCase):
         self.temp.cleanup()
 
     def test_valid_config_generates_exact_client_contract(self):
-        self.module.build(self.input, "2026-07-20.1", self.output, published_at=1784540000000)
+        self.module.build(
+            self.input,
+            "2026-07-20.1",
+            self.output,
+            published_at=1784540000000,
+            current_output=self.current,
+        )
 
         payload = json.loads(self.output.read_text(encoding="utf-8"))
         self.assertEqual(1, payload["schemaVersion"])
@@ -53,6 +60,17 @@ class ChannelConfigPublisherTest(unittest.TestCase):
         self.assertEqual("wrap", payload["layout"])
         self.assertEqual("山水", payload["channels"][0]["title"])
         self.assertEqual([], payload["channels"][0]["filter"]["allOfTags"])
+        self.assertEqual(payload, json.loads(self.current.read_text(encoding="utf-8")))
+
+    def test_current_pointer_canAdvanceToANewImmutableConfig(self):
+        self.module.build(self.input, "2026-07-20.1", self.output, published_at=1, current_output=self.current)
+
+        second_output = self.root / "channel-config-2.json"
+        self.module.build(self.input, "2026-07-20.2", second_output, published_at=2, current_output=self.current)
+
+        self.assertTrue(self.output.exists())
+        self.assertTrue(second_output.exists())
+        self.assertEqual("2026-07-20.2", json.loads(self.current.read_text(encoding="utf-8"))["configId"])
 
     def test_duplicate_channel_id_fails_without_output(self):
         config = json.loads(self.input.read_text(encoding="utf-8"))

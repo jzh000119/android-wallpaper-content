@@ -80,7 +80,13 @@ def validate(config: object) -> dict[str, object]:
     return {"layout": layout, "channels": validated_channels}
 
 
-def build(input_path: Path, config_id: str, output_path: Path, published_at: int | None = None) -> None:
+def build(
+    input_path: Path,
+    config_id: str,
+    output_path: Path,
+    published_at: int | None = None,
+    current_output: Path | None = None,
+) -> None:
     if not IDENTIFIER.fullmatch(config_id):
         raise ChannelConfigBuildError("INVALID_CONFIG: config id is invalid")
     if output_path.exists():
@@ -89,14 +95,17 @@ def build(input_path: Path, config_id: str, output_path: Path, published_at: int
     timestamp = int(time.time() * 1000) if published_at is None else int(published_at)
     if timestamp <= 0:
         raise ChannelConfigBuildError("INVALID_CONFIG: published timestamp must be positive")
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "schemaVersion": 1,
         "configId": config_id,
         "publishedAtEpochMillis": timestamp,
         **config,
     }
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    if current_output is not None:
+        current_output.parent.mkdir(parents=True, exist_ok=True)
+        current_output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
@@ -104,9 +113,10 @@ def main() -> None:
     parser.add_argument("--input", required=True, type=Path)
     parser.add_argument("--config-id", required=True)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--current-output", type=Path)
     parser.add_argument("--published-at", type=int)
     args = parser.parse_args()
-    build(args.input, args.config_id, args.output, args.published_at)
+    build(args.input, args.config_id, args.output, args.published_at, args.current_output)
 
 
 if __name__ == "__main__":

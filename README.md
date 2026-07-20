@@ -3,7 +3,7 @@
 Public staging content for `jzh000119/android-wallpaper-app`.
 
 - Runtime catalog: `content/v1/releases/2026-07-20.3/release.json`
-- Runtime channel configuration: `content/v1/channels/2026-07-20.1/channel-config.json`
+- Runtime channel configuration pointer: `content/v1/channels/current.json`
 - Source: The Metropolitan Museum of Art Open Access
 - Rights gate: every item must be marked public domain and retain its source and license evidence
 - Production boundary: this GitHub Pages repository is for development acceptance only; the Android release must use the domestic COS/CDN configuration
@@ -20,10 +20,12 @@ Generated assets are immutable and named by SHA-256. Do not replace files inside
 
 ## Channel configuration
 
-Channel configuration is a separate immutable endpoint, rather than an additive field in a catalog
-release. This preserves compatibility with Android clients that intentionally parse
-`release.json` strictly: those older clients do not fetch this endpoint, while newer clients can
-use the configuration for channel labels, filters, sorting, layout, and visibility.
+Channel configuration is a separate endpoint, rather than an additive field in a catalog release.
+This preserves compatibility with Android clients that intentionally parse `release.json`
+strictly: those older clients do not fetch this endpoint, while newer clients can use the
+configuration for channel labels, filters, sorting, layout, and visibility. Each versioned file
+is immutable; `content/v1/channels/current.json` is the intentionally mutable pointer that lets
+newer clients discover a later reviewed configuration without an APK update.
 
 Build a new configuration from a reviewed input file with:
 
@@ -31,7 +33,8 @@ Build a new configuration from a reviewed input file with:
 python3 tools/build_channel_config.py \
   --input tools/channel-config/2026-07-20.1.json \
   --config-id 2026-07-20.1 \
-  --output content/v1/channels/2026-07-20.1/channel-config.json
+  --output content/v1/channels/2026-07-20.1/channel-config.json \
+  --current-output content/v1/channels/current.json
 ```
 
 The publisher refuses to overwrite an existing output. Run its contract tests before a release:

@@ -65,14 +65,7 @@ def make_artwork(destination: Path) -> None:
     image.save(destination, "PNG", optimize=True)
 
 
-def make_package(destination: Path, private_key: Path) -> None:
-    manifest = {
-        "schemaVersion": 1,
-        "contentId": CONTENT_ID,
-        "contentVersion": CONTENT_VERSION,
-        "renderer": RENDERER,
-        "scenePath": "scene.json",
-    }
+def make_package(destination: Path, private_key: Path, fallback_sha256: str) -> None:
     scene = {
         "schemaVersion": 1,
         "durationMillis": 12000,
@@ -82,8 +75,17 @@ def make_package(destination: Path, private_key: Path) -> None:
             {"color": "#F0C79A", "alpha": 0.14, "radius": 0.36, "startX": 0.78, "startY": 0.72, "endX": 0.28, "endY": 0.63, "phase": 0.55},
         ],
     }
-    manifest_bytes = json.dumps(manifest, ensure_ascii=False, separators=(",", ":")).encode()
     scene_bytes = json.dumps(scene, ensure_ascii=False, separators=(",", ":")).encode()
+    manifest = {
+        "schemaVersion": 1,
+        "contentId": CONTENT_ID,
+        "contentVersion": CONTENT_VERSION,
+        "renderer": RENDERER,
+        "scenePath": "scene.json",
+        "sceneSha256": hashlib.sha256(scene_bytes).hexdigest(),
+        "fallbackSha256": fallback_sha256,
+    }
+    manifest_bytes = json.dumps(manifest, ensure_ascii=False, separators=(",", ":")).encode()
     with tempfile.TemporaryDirectory() as temporary:
         manifest_path = Path(temporary) / "manifest.json"
         signature_path = Path(temporary) / "manifest.sig"
@@ -133,7 +135,7 @@ def main() -> None:
         make_artwork(fallback)
         with Image.open(fallback) as image:
             image.resize((360, 640)).save(thumbnail, "PNG", optimize=True)
-        make_package(package, args.private_key)
+        make_package(package, args.private_key, sha256(fallback))
         fallback_asset = copy_as_hashed(fallback, assets)
         thumbnail_asset = copy_as_hashed(thumbnail, assets)
         package_digest = sha256(package)

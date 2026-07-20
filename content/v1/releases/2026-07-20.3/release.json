@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "2026-07-20.3",
+  "publishedAtEpochMillis": 1784553935572,
+  "items": [
+    {
+      "contentId": "met-44895-cloud-valley",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "云壑松风",
+      "description": "纵向水墨山景，适合作为留白克制的桌面或锁屏。",
+      "mood": "沉静",
+      "style": "水墨山水",
+      "tags": [
+        "东方",
+        "山水",
+        "留白"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/142c3f769a9671880b439c765ea576c0866ea11902a27b5bdea5bcca7df8cfc6.jpg",
+        "mediaType": "jpeg",
+        "bytes": 42003,
+        "width": 198,
+        "height": 624,
+        "sha256": "142c3f769a9671880b439c765ea576c0866ea11902a27b5bdea5bcca7df8cfc6"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/f111f0d2b4ab29e4eb01d0ce4520c7111b90b13f65b8673bcf76caf2c5411f80.jpg",
+        "mediaType": "jpeg",
+        "bytes": 1178454,
+        "width": 1269,
+        "height": 4000,
+        "sha256": "f111f0d2b4ab29e4eb01d0ce4520c7111b90b13f65b8673bcf76caf2c5411f80"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1269,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "44895",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/44895",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784516773433,
+        "creatorCredit": "Kushiro Unsen",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-54710-spring-landscape",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "湖山春色",
+      "description": "层叠青山与水岸春色，为图标和时钟保留舒展空间。",
+      "mood": "清新",
+      "style": "日本画",
+      "tags": [
+        "东方",
+        "山水",
+        "春日"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/2b1398097d4918656236a83c3ec226c0772ebe8520e478e485909ecac52652fd.jpg",
+        "mediaType": "jpeg",
+        "bytes": 94096,
+        "width": 479,
+        "height": 624,
+        "sha256": "2b1398097d4918656236a83c3ec226c0772ebe8520e478e485909ecac52652fd"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/608348eb54beec10512cfaf7acb5721653bad9a0e283511680d62e21b6b89e5d.jpg",
+        "mediaType": "jpeg",
+        "bytes": 4401520,
+        "width": 3070,
+        "height": 4000,
+        "sha256": "608348eb54beec10512cfaf7acb5721653bad9a0e283511680d62e21b6b89e5d"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 3070,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "54710",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/54710",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784516773433,
+        "creatorCredit": "Kawabata Gyokushō",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-45734-quails-and-millet",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "鹌鹑与粟",
+      "description": "细腻花鸟画面与柔和底色，适合作为安静耐看的日常壁纸。",
+      "mood": "温柔",
+      "style": "花鸟绘",
+      "tags": [
+        "东方",
+        "花鸟",
+        "自然"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/2c3ff57c7ca7bc06b2eb8d3a14c1c0a0c85276a3e4d09bf92f0edfd43de09fcd.jpg",
+        "mediaType": "jpeg",
+        "bytes": 38711,
+        "width": 299,
+        "height": 623,
+        "sha256": "2c3ff57c7ca7bc06b2eb8d3a14c1c0a0c85276a3e4d09bf92f0edfd43de09fcd"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.1/assets/9afbcc5d53486a12c1a86666ee1accb4b3e8fe2e724a74a42294be96e18f2cdf.jpg",
+        "mediaType": "jpeg",
+        "bytes": 1425773,
+        "width": 1916,
+        "height": 3992,
+        "sha256": "9afbcc5d53486a12c1a86666ee1accb4b3e8fe2e724a74a42294be96e18f2cdf"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1916,
+        "canvasHeight": 3992
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "45734",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/45734",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784516773433,
+        "creatorCredit": "Kiyohara Yukinobu",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "misty-tide-atmosphere",
+      "contentVersion": 1,
+      "kind": "live",
+      "title": "雾潮流光",
+      "description": "自制参数化动态场景：柔和光雾缓慢流动，省电或高温时会静态降级。",
+      "mood": "沉浸",
+      "style": "现代东方",
+      "tags": [
+        "动态",
+        "低功耗",
+        "开发验证"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/b45710fd0b570bead0ee6682addad95b850543ac148f1032e30b2a1fa4b4e05c.png",
+        "mediaType": "png",
+        "bytes": 38292,
+        "width": 360,
+        "height": 640,
+        "sha256": "b45710fd0b570bead0ee6682addad95b850543ac148f1032e30b2a1fa4b4e05c"
+      },
+      "livePackage": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/9d2dc04ed86ea0dab5a4c05b32246c4c8398c6b84751cb3bd87dab71428c6b8d.lwp",
+        "mediaType": "liveWallpaperPackage",
+        "bytes": 966,
+        "width": 720,
+        "height": 1280,
+        "sha256": "9d2dc04ed86ea0dab5a4c05b32246c4c8398c6b84751cb3bd87dab71428c6b8d"
+      },
+      "fallbackAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/665309e07bd525cfc77130284198c66142a60dd88c2c65516536301baf455411.png",
+        "mediaType": "png",
+        "bytes": 62414,
+        "width": 720,
+        "height": 1280,
+        "sha256": "665309e07bd525cfc77130284198c66142a60dd88c2c65516536301baf455411"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 720,
+        "canvasHeight": 1280
+      },
+      "rights": {
+        "sourceName": "Android Wallpaper Content self-authored development fixture",
+        "sourceItemId": "misty-tide-atmosphere-v1",
+        "sourceLandingUrl": "https://github.com/jzh000119/android-wallpaper-content",
+        "licenseName": "CC0 1.0 / self-authored development fixture",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "rightsSnapshotAtEpochMillis": 1784553935572,
+        "creatorCredit": "jzh000119",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human",
+      "powerRating": "low"
+    }
+  ]
+}

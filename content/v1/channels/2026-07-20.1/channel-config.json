@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "configId": "2026-07-20.1",
+  "publishedAtEpochMillis": 1784540000000,
+  "layout": "wrap",
+  "channels": [
+    {
+      "id": "oriental",
+      "title": "东方",
+      "filter": {
+        "anyOfTags": [
+          "东方"
+        ],
+        "allOfTags": []
+      },
+      "sort": "catalogOrder",
+      "access": "public"
+    },
+    {
+      "id": "landscape",
+      "title": "山水",
+      "filter": {
+        "anyOfTags": [
+          "山水"
+        ],
+        "allOfTags": []
+      },
+      "sort": "title",
+      "access": "public"
+    },
+    {
+      "id": "birds-and-flowers",
+      "title": "花鸟",
+      "filter": {
+        "anyOfTags": [
+          "花鸟"
+        ],
+        "allOfTags": []
+      },
+      "sort": "title",
+      "access": "public"
+    },
+    {
+      "id": "operator-hold",
+      "title": "待发布",
+      "filter": {
+        "anyOfTags": [
+          "开发验证"
+        ],
+        "allOfTags": []
+      },
+      "sort": "catalogOrder",
+      "access": "hidden"
+    }
+  ]
+}

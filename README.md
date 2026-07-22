@@ -2,13 +2,14 @@
 
 Public staging content for `jzh000119/android-wallpaper-app`.
 
-- Runtime catalog: `content/v1/releases/2026-07-20.3/release.json`
+- Runtime catalog: `content/v1/releases/2026-07-22.1/release.json`
 - Runtime channel configuration pointer: `content/v1/channels/current.json`
 - Source: The Metropolitan Museum of Art Open Access
 - Rights gate: every item must be marked public domain and retain its source and license evidence
 - Production boundary: this GitHub Pages repository is for development acceptance only; the Android release must use the domestic COS/CDN configuration
 
-`2026-07-20.3` additionally contains one self-authored, parameter-only dynamic fixture. Its
+`2026-07-22.1` contains 12 reviewed The Met Open Access static wallpapers and reuses the signed,
+self-authored parameter-only dynamic fixture first published in `2026-07-20.3`. Its
 `.lwp` package is signed with the development key whose public-key SHA-256 fingerprint is
 `d9ab0e13f3d39caf8ee30dcaf550a98925041c3cddd58227758a6788e000ec8c`.
 The signed manifest binds the scene bytes and the fallback-image SHA-256, so an asset replacement

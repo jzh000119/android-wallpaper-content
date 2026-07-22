@@ -1,0 +1,649 @@
+{
+  "schemaVersion": 1,
+  "releaseId": "2026-07-22.1",
+  "publishedAtEpochMillis": 1784707226160,
+  "items": [
+    {
+      "contentId": "met-44895-cloud-valley",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "云壑松风",
+      "description": "纵向水墨山景，适合作为留白克制的桌面或锁屏。",
+      "mood": "沉静",
+      "style": "水墨山水",
+      "tags": [
+        "东方",
+        "山水",
+        "留白"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/142c3f769a9671880b439c765ea576c0866ea11902a27b5bdea5bcca7df8cfc6.jpg",
+        "mediaType": "jpeg",
+        "bytes": 42003,
+        "width": 198,
+        "height": 624,
+        "sha256": "142c3f769a9671880b439c765ea576c0866ea11902a27b5bdea5bcca7df8cfc6"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/f111f0d2b4ab29e4eb01d0ce4520c7111b90b13f65b8673bcf76caf2c5411f80.jpg",
+        "mediaType": "jpeg",
+        "bytes": 1178454,
+        "width": 1269,
+        "height": 4000,
+        "sha256": "f111f0d2b4ab29e4eb01d0ce4520c7111b90b13f65b8673bcf76caf2c5411f80"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1269,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "44895",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/44895",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Kushiro Unsen",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-54710-spring-landscape",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "湖山春色",
+      "description": "层叠青山与水岸春色，为图标和时钟保留舒展空间。",
+      "mood": "清新",
+      "style": "日本画",
+      "tags": [
+        "东方",
+        "山水",
+        "春日"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/2b1398097d4918656236a83c3ec226c0772ebe8520e478e485909ecac52652fd.jpg",
+        "mediaType": "jpeg",
+        "bytes": 94096,
+        "width": 479,
+        "height": 624,
+        "sha256": "2b1398097d4918656236a83c3ec226c0772ebe8520e478e485909ecac52652fd"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/608348eb54beec10512cfaf7acb5721653bad9a0e283511680d62e21b6b89e5d.jpg",
+        "mediaType": "jpeg",
+        "bytes": 4401520,
+        "width": 3070,
+        "height": 4000,
+        "sha256": "608348eb54beec10512cfaf7acb5721653bad9a0e283511680d62e21b6b89e5d"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 3070,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "54710",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/54710",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Kawabata Gyokushō",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-45734-quails-and-millet",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "鹌鹑与粟",
+      "description": "细腻花鸟画面与柔和底色，适合作为安静耐看的日常壁纸。",
+      "mood": "温柔",
+      "style": "花鸟绘",
+      "tags": [
+        "东方",
+        "花鸟",
+        "自然"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/2c3ff57c7ca7bc06b2eb8d3a14c1c0a0c85276a3e4d09bf92f0edfd43de09fcd.jpg",
+        "mediaType": "jpeg",
+        "bytes": 38711,
+        "width": 299,
+        "height": 623,
+        "sha256": "2c3ff57c7ca7bc06b2eb8d3a14c1c0a0c85276a3e4d09bf92f0edfd43de09fcd"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/9afbcc5d53486a12c1a86666ee1accb4b3e8fe2e724a74a42294be96e18f2cdf.jpg",
+        "mediaType": "jpeg",
+        "bytes": 1425773,
+        "width": 1916,
+        "height": 3992,
+        "sha256": "9afbcc5d53486a12c1a86666ee1accb4b3e8fe2e724a74a42294be96e18f2cdf"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1916,
+        "canvasHeight": 3992
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "45734",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/45734",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Kiyohara Yukinobu",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-36191-clouded-mountain-village",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "云岭山居",
+      "description": "层叠山岭与村舍沿水展开，纵向构图为时钟和图标留下安静空间。",
+      "mood": "沉静",
+      "style": "水墨山水",
+      "tags": [
+        "东方",
+        "山水",
+        "村居",
+        "留白"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/81a9896d5dffaf764cd7065eb3eefd449545c2229e8402aaf03760e57dedb678.jpg",
+        "mediaType": "jpeg",
+        "bytes": 188060,
+        "width": 335,
+        "height": 624,
+        "sha256": "81a9896d5dffaf764cd7065eb3eefd449545c2229e8402aaf03760e57dedb678"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/810fc98ad103eedfe2c415d67116964a5f8fad0aa2892fcc968a37fb55a9ad2c.jpg",
+        "mediaType": "jpeg",
+        "bytes": 3517980,
+        "width": 2148,
+        "height": 4000,
+        "sha256": "810fc98ad103eedfe2c415d67116964a5f8fad0aa2892fcc968a37fb55a9ad2c"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 2148,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "36191",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/36191",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Zhang Shanghe",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-49028-green-mountain-path",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "青绿云栈",
+      "description": "青绿峭壁、松林与曲折栈道纵向延伸，适合作为有探索感的东方壁纸。",
+      "mood": "探索",
+      "style": "青绿山水",
+      "tags": [
+        "东方",
+        "山水",
+        "青绿",
+        "古意"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/844e946ec6052a51bd2ffa450b3eeb92e6244d1bd5c8d60c0916d109108ed29f.jpg",
+        "mediaType": "jpeg",
+        "bytes": 85690,
+        "width": 336,
+        "height": 625,
+        "sha256": "844e946ec6052a51bd2ffa450b3eeb92e6244d1bd5c8d60c0916d109108ed29f"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/a043375f43b5502344217af7ab746f785e3c4a948087b36945d280e30f57430b.jpg",
+        "mediaType": "jpeg",
+        "bytes": 3285669,
+        "width": 2152,
+        "height": 4000,
+        "sha256": "a043375f43b5502344217af7ab746f785e3c4a948087b36945d280e30f57430b"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 2152,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "49028",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/49028",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Nakabayashi Chikkei",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-51786-quails-and-flowers",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "花影鹌游",
+      "description": "花枝、山石与鹌鹑组成温润画面，暖色留白适合日常桌面和锁屏。",
+      "mood": "温柔",
+      "style": "花鸟绘",
+      "tags": [
+        "东方",
+        "花鸟",
+        "自然",
+        "暖色"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/8007e3307352bb5a76c644a678ee55b3ab3eefa2f122994b7f802edcab276603.jpg",
+        "mediaType": "jpeg",
+        "bytes": 89929,
+        "width": 408,
+        "height": 624,
+        "sha256": "8007e3307352bb5a76c644a678ee55b3ab3eefa2f122994b7f802edcab276603"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/07204adca80f30db3baac10f7e8318937776c16915c72fd4aa7b29d3c124dfb8.jpg",
+        "mediaType": "jpeg",
+        "bytes": 2690439,
+        "width": 2616,
+        "height": 4000,
+        "sha256": "07204adca80f30db3baac10f7e8318937776c16915c72fd4aa7b29d3c124dfb8"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 2616,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "51786",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/51786",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Zhang Ruoai",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-53221-summer-autumn-birds",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "夏秋花鸟",
+      "description": "飞鸟掠过夏秋花木，纵向主体清晰，适合轻盈又不喧闹的屏幕氛围。",
+      "mood": "轻盈",
+      "style": "日本花鸟",
+      "tags": [
+        "东方",
+        "花鸟",
+        "自然",
+        "夏秋"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/f1ebd6bbfd96d2ad7dacd53143ed75a35c76400681d8d70eec6bb03c5bca2d52.jpg",
+        "mediaType": "jpeg",
+        "bytes": 72996,
+        "width": 468,
+        "height": 624,
+        "sha256": "f1ebd6bbfd96d2ad7dacd53143ed75a35c76400681d8d70eec6bb03c5bca2d52"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/aa4e455f48b412dc78fc0fc64be515bb5b723353051df1efd4837c133a409b5f.jpg",
+        "mediaType": "jpeg",
+        "bytes": 3010270,
+        "width": 3000,
+        "height": 4000,
+        "sha256": "aa4e455f48b412dc78fc0fc64be515bb5b723353051df1efd4837c133a409b5f"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 3000,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "53221",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/53221",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Shikibu Terutada",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-53228-splashed-ink-mountain",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "泼墨远岫",
+      "description": "大幅留白中浮现远山、树影与小桥，适合追求空灵和克制的桌面。",
+      "mood": "空灵",
+      "style": "泼墨山水",
+      "tags": [
+        "东方",
+        "山水",
+        "泼墨",
+        "留白"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/4a9d644168f618ba2ea8eb7031a4aada164f5283c101e0ce0f75e9b7845a366f.jpg",
+        "mediaType": "jpeg",
+        "bytes": 61620,
+        "width": 468,
+        "height": 624,
+        "sha256": "4a9d644168f618ba2ea8eb7031a4aada164f5283c101e0ce0f75e9b7845a366f"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/d96f92d6ae1344339f0422c8970af503a8b0fbf4a98aa8a64afb3569771be8cf.jpg",
+        "mediaType": "jpeg",
+        "bytes": 2679197,
+        "width": 2998,
+        "height": 4000,
+        "sha256": "d96f92d6ae1344339f0422c8970af503a8b0fbf4a98aa8a64afb3569771be8cf"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 2998,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "53228",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/53228",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Bokushō Shūshō",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-54696-misty-riverside",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "岚溪村居",
+      "description": "雾中远山、溪流与村舍层次舒展，低饱和画面适合安静阅读和专注。",
+      "mood": "清寂",
+      "style": "淡彩山水",
+      "tags": [
+        "东方",
+        "山水",
+        "村居",
+        "雾色"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/ea74f1367b69c7f644a28506626625d26285d17d9658e10735ba449f978983e1.jpg",
+        "mediaType": "jpeg",
+        "bytes": 78069,
+        "width": 447,
+        "height": 624,
+        "sha256": "ea74f1367b69c7f644a28506626625d26285d17d9658e10735ba449f978983e1"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/3e88cef8c7689d5d610734759004345dfaa0742d63777f121beeb40af76965b9.jpg",
+        "mediaType": "jpeg",
+        "bytes": 3445685,
+        "width": 2756,
+        "height": 3849,
+        "sha256": "3e88cef8c7689d5d610734759004345dfaa0742d63777f121beeb40af76965b9"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 2756,
+        "canvasHeight": 3849
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "54696",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/54696",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Hashimoto Gahō",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-57160-high-mountain-retreat",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "云峰小隐",
+      "description": "高峰与山间屋舍沿长卷向上延伸，形成安定、深远的纵向视觉节奏。",
+      "mood": "安定",
+      "style": "水墨山水",
+      "tags": [
+        "东方",
+        "山水",
+        "高峰",
+        "村居"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/8399826e042d9eb2174aa1bd95c7bbbbcd1a2ddc5402bb67223fbd661e90208e.jpg",
+        "mediaType": "jpeg",
+        "bytes": 48202,
+        "width": 247,
+        "height": 625,
+        "sha256": "8399826e042d9eb2174aa1bd95c7bbbbcd1a2ddc5402bb67223fbd661e90208e"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/7658b17fad43c8bb52dfa8bc60b5144a6f8e66e61233bee87f21f455464811d1.jpg",
+        "mediaType": "jpeg",
+        "bytes": 1508514,
+        "width": 1581,
+        "height": 4000,
+        "sha256": "7658b17fad43c8bb52dfa8bc60b5144a6f8e66e61233bee87f21f455464811d1"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1581,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "57160",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/57160",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Kushiro Unsen",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-904735-peach-blossom",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "桃枝春信",
+      "description": "桃红花枝在浅色背景中舒展，为春日桌面带来明快但克制的色彩。",
+      "mood": "明快",
+      "style": "工笔花卉",
+      "tags": [
+        "东方",
+        "花卉",
+        "春日",
+        "暖色"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/2850747e0ac1620d61921d0413e397d26b153973cc13db2d4407ccfe0f42f109.jpg",
+        "mediaType": "jpeg",
+        "bytes": 124362,
+        "width": 502,
+        "height": 624,
+        "sha256": "2850747e0ac1620d61921d0413e397d26b153973cc13db2d4407ccfe0f42f109"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/2c693efa9b1f4d3da6c6b11d54eef9f59b929f2e92d41f39c7a08cb2d6872fab.jpg",
+        "mediaType": "jpeg",
+        "bytes": 3621250,
+        "width": 3000,
+        "height": 3730,
+        "sha256": "2c693efa9b1f4d3da6c6b11d54eef9f59b929f2e92d41f39c7a08cb2d6872fab"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 3000,
+        "canvasHeight": 3730
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "904735",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/904735",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Liang Yuwei",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "met-916570-autumn-mountain-retreat",
+      "contentVersion": 1,
+      "kind": "static",
+      "title": "秋山访隐",
+      "description": "秋山、溪谷与隐居小屋形成纵深层次，适合沉浸和专注的深色图标布局。",
+      "mood": "专注",
+      "style": "文人山水",
+      "tags": [
+        "东方",
+        "山水",
+        "秋日",
+        "村居"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/acdb15b396dc665748a3a6c9834fcb6d416e471eee2e2f72f3ea93421dd9c49a.jpg",
+        "mediaType": "jpeg",
+        "bytes": 81370,
+        "width": 254,
+        "height": 624,
+        "sha256": "acdb15b396dc665748a3a6c9834fcb6d416e471eee2e2f72f3ea93421dd9c49a"
+      },
+      "staticAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-22.1/assets/91a87933542c7bdb3ed37e2f3cab1df0231d96eeffac834c39698102542f3f60.jpg",
+        "mediaType": "jpeg",
+        "bytes": 2318430,
+        "width": 1629,
+        "height": 4000,
+        "sha256": "91a87933542c7bdb3ed37e2f3cab1df0231d96eeffac834c39698102542f3f60"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 1629,
+        "canvasHeight": 4000
+      },
+      "rights": {
+        "sourceName": "The Metropolitan Museum of Art Open Access",
+        "sourceItemId": "916570",
+        "sourceLandingUrl": "https://www.metmuseum.org/art/collection/search/916570",
+        "licenseName": "CC0 1.0 / The Met Open Access",
+        "licenseUrl": "https://www.metmuseum.org/policies/image-resources",
+        "rightsSnapshotAtEpochMillis": 1784707226160,
+        "creatorCredit": "Okada Hankō",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human"
+    },
+    {
+      "contentId": "misty-tide-atmosphere",
+      "contentVersion": 1,
+      "kind": "live",
+      "title": "雾潮流光",
+      "description": "自制参数化动态场景：柔和光雾缓慢流动，省电或高温时会静态降级。",
+      "mood": "沉浸",
+      "style": "现代东方",
+      "tags": [
+        "动态",
+        "低功耗",
+        "开发验证"
+      ],
+      "thumbnail": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/b45710fd0b570bead0ee6682addad95b850543ac148f1032e30b2a1fa4b4e05c.png",
+        "mediaType": "png",
+        "bytes": 38292,
+        "width": 360,
+        "height": 640,
+        "sha256": "b45710fd0b570bead0ee6682addad95b850543ac148f1032e30b2a1fa4b4e05c"
+      },
+      "livePackage": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/9d2dc04ed86ea0dab5a4c05b32246c4c8398c6b84751cb3bd87dab71428c6b8d.lwp",
+        "mediaType": "liveWallpaperPackage",
+        "bytes": 966,
+        "width": 720,
+        "height": 1280,
+        "sha256": "9d2dc04ed86ea0dab5a4c05b32246c4c8398c6b84751cb3bd87dab71428c6b8d"
+      },
+      "fallbackAsset": {
+        "url": "https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-20.3/assets/665309e07bd525cfc77130284198c66142a60dd88c2c65516536301baf455411.png",
+        "mediaType": "png",
+        "bytes": 62414,
+        "width": 720,
+        "height": 1280,
+        "sha256": "665309e07bd525cfc77130284198c66142a60dd88c2c65516536301baf455411"
+      },
+      "compatibility": {
+        "minApi": 26,
+        "maxApi": null,
+        "canvasWidth": 720,
+        "canvasHeight": 1280
+      },
+      "rights": {
+        "sourceName": "Android Wallpaper Content self-authored development fixture",
+        "sourceItemId": "misty-tide-atmosphere-v1",
+        "sourceLandingUrl": "https://github.com/jzh000119/android-wallpaper-content",
+        "licenseName": "CC0 1.0 / self-authored development fixture",
+        "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "rightsSnapshotAtEpochMillis": 1784553935572,
+        "creatorCredit": "jzh000119",
+        "reviewStatus": "approved",
+        "takedownStatus": "available"
+      },
+      "origin": "human",
+      "powerRating": "low"
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 Public staging content for `jzh000119/android-wallpaper-app`.
 
 - Runtime catalog: `content/v1/releases/2026-07-30.2/release.json`
-- Runtime channel configuration pointer: `content/v1/channels/current.json`
+- Runtime channel configuration pointer: `content/v1/channels/current.json` (`2026-07-30.3`)
 - Reviewed sources: The Metropolitan Museum of Art Open Access and six project-original,
   AI-assisted development assets
 - Rights gate: The Met items must remain verified public-domain/CC0 records; project-original AI
@@ -61,22 +61,63 @@ configuration for channel labels, filters, sorting, layout, and visibility. Each
 is immutable; `content/v1/channels/current.json` is the intentionally mutable pointer that lets
 newer clients discover a later reviewed configuration without an APK update.
 
-Build a new configuration from a reviewed input file with:
+当前不可变配置位于
+`content/v1/channels/2026-07-30.3/channel-config.json`，其 `current.json` 指针逐字节相同：
 
 ```text
-python3 tools/build_channel_config.py \
-  --input tools/channel-config/2026-07-20.1.json \
-  --config-id 2026-07-20.1 \
-  --output content/v1/channels/2026-07-20.1/channel-config.json \
-  --current-output content/v1/channels/current.json
+config bytes = 1,273
+config SHA-256 =
+6126ff406089700f8f1296b9a2c765232e7f275c61bc5b6be1b86a137fb4943d
+catalog release = 2026-07-30.2
+catalog SHA-256 =
+9a008233650cf5a5d67b7a3d53c50505e515ed8ed26a07fca92e89458b7d8eca
+public matches = anime 6 / oriental 21 / landscape 14 / birds-and-flowers 5 / night 3
 ```
 
-The publisher refuses to overwrite an existing output. Run its contract tests before a release:
+新版发布必须从应用仓根目录调用冻结的跨端发布器，而不是使用此仓历史
+`tools/build_channel_config.py`。后者不具备 UTF-16、signed `Long` 和完整 wire 边界的等价
+验证，不能用于新的受审配置。
 
 ```text
-python3 -m unittest tools/test_build_channel_config.py
+cd ../android-wallpaper-app
+python3 -m tools.catalog.publish_channel_config \
+  --input ../android-wallpaper-content/tools/channel-config/2026-07-30.3.json \
+  --content-root ../android-wallpaper-content \
+  --catalog ../android-wallpaper-content/content/v1/releases/2026-07-30.2/release.json \
+  --projection-review content/reviews/vc09c-channel-projection-2026-07-30.3.json \
+  --expected-catalog-release-id 2026-07-30.2 \
+  --expected-catalog-sha256 9a008233650cf5a5d67b7a3d53c50505e515ed8ed26a07fca92e89458b7d8eca \
+  --expected-public-channel-count anime=6 \
+  --expected-public-channel-count oriental=21 \
+  --expected-public-channel-count landscape=14 \
+  --expected-public-channel-count birds-and-flowers=5 \
+  --expected-public-channel-count night=3 \
+  --output ../android-wallpaper-content/content/v1/channels/2026-07-30.3/channel-config.json \
+  --current-output ../android-wallpaper-content/content/v1/channels/current.json
 ```
 
-When updating `current.json`, the publisher requires both a new `configId` and a strictly newer
-`publishedAtEpochMillis`; it refuses to publish the immutable output if the mutable pointer would
-move backward or rewrite the same ID.
+发布器会严格解析不可信 ChannelConfig 和 CatalogRelease raw JSON，拒绝非法 UTF-8/BOM、重复键、
+NaN/Infinity、超过 64 层、越界整数和孤立 surrogate；只接受精确映射到受控 content checkout 的
+`content/v1/releases/<releaseId>/release.json`、
+`content/v1/channels/<configId>/channel-config.json` 与 `channels/current.json`，并拒绝受控内容树中的
+软链接。`content-root` 本身和其下 `content/v1/channels`、`content/v1/releases` 都按段
+检查；release 目录、catalog 最终文件与已存在 config 目录出现软链接、非目录或非普通文件均失败。每个
+public 频道都必须在当前 API 36 eligible static 目录中命中，`any/all`
+严格区分大小写，且审定 release ID、raw SHA-256、每频道匹配数和 `catalogOrder` ID 序列必须一致。
+`--projection-review` 是独立受审输入，固定 config/catalog 的 raw SHA 与每个 public 频道完整的有序
+content ID；发布器先逐项比对它，再允许任何输出写入，不会从同一 config/catalog 的运行时重算结果中自证。
+
+immutable 文件通过 macOS/Linux atomic no-replace rename 写入，随后才替换可变指针。该开发发布器
+的信任边界仍是单个可信本地发布者：锁和二次 pointer 检查保护协作调用，不宣称能够抵抗恶意本机
+进程、共享对象存储并发或生产发布攻击。若进程在 immutable 写入后、pointer 替换前崩溃，重试只会接管
+regular、单硬链接且 SHA-256 与候选逐字节相同的孤儿 immutable 文件；不同内容或不安全文件类型绝不
+删除、覆盖或接管。`channels/.channel-config-publish.lock` 是被 `.gitignore` 精确忽略的 persistent
+regular/单硬链接 advisory `fcntl.flock` 锁：未持锁的残留文件可以复用，进程被终止后内核自动释放锁，
+不以旧文件阻断 orphan 恢复；不支持 `fcntl` 时发布器 fail closed。GitHub Pages 仍仅是 development
+staging。
+
+运行发布器自身离线回归：
+
+```text
+python3 -m unittest tools.catalog.test_publish_channel_config
+```

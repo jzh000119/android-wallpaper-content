@@ -2,3 +2,4 @@
 **/.DS_Store
 __pycache__/
 *.py[cod]
+content/v1/channels/.channel-config-publish.lock

@@ -2,21 +2,25 @@
 
 Public staging content for `jzh000119/android-wallpaper-app`.
 
-- Runtime catalog: `content/v1/releases/2026-07-30.2/release.json`
-- Runtime channel configuration pointer: `content/v1/channels/current.json` (`2026-07-30.3`)
-- Reviewed sources: The Metropolitan Museum of Art Open Access and six project-original,
-  AI-assisted development assets
-- Rights gate: The Met items must remain verified public-domain/CC0 records; project-original AI
-  items must retain their generation-terms record, visible AI label, human review, exact asset
-  hash, non-exclusive/non-absolute-clearance wording, and takedown state
-- Production boundary: this GitHub Pages repository is for development acceptance only; the Android release must use the domestic COS/CDN configuration
+- 运行时目录：`content/v1/releases/2026-07-30.4/release.json`
+- 运行时内容：28 个 static 壁纸与 1 个 live fixture；其中新增的 Cleveland Museum of Art
+  Open Access 两项 static 均为 CC0 记录
+- 频道指针：`content/v1/channels/current.json` 仍为 `2026-07-30.3`，本次 catalog 发布不修改它
+- 权利闸门：The Met 与 CMA 条目必须保留可核验的 public-domain/CC0 记录；项目原创 AI 条目必须
+  保留生成条款记录、可见 AI 标签、人工复核、精确 asset hash、非独占/非绝对清权表述与下架状态
+- 生产边界：GitHub Pages 仅用于 development 验收；Android 正式版本必须使用国内 COS/CDN 配置
 
-`2026-07-30.2` contains 26 reviewed static wallpapers: 20 The Met Open Access items and six
-project-original AI-assisted items. The six project-original files are byte-identical to the
-WebP assets already bundled in the Android Debug APK. The same exact object is used for thumbnail
-and original, avoiding another lossy encoding. The Android sync selector recognizes their six
-canonical content IDs and does not prefetch these duplicate 1,261,962 bytes (about 1.20 MiB);
-the APK-bundled originals remain the runtime cards.
+`2026-07-30.4` 包含 28 项已审核的 static：20 项 The Met Open Access、6 项项目原创
+AI-assisted 条目，以及 2 项 Cleveland Museum of Art Open Access CC0 条目；另复用 1 个已签名的
+live fixture。两项 CMA 条目以 4 个 WebP 文件发布（每项 1080×2400 壁纸成品和 360×800 缩略图各一），
+文件名就是 SHA-256。
+该 release 的 raw SHA-256 为
+`c865bd4c6701e80d5668a2d060446c766b6aea2f6361570d32f5d3978eb5828b`。
+
+本次 `.4` 发布直接逐字节采用应用仓 `build/catalog/2026-07-30.4` 的受审产物；运行时目录只包含
+`release.json` 与这 4 个 WebP，不包含 draft manifest 或旧版本资产。项目原创的 6 个 WebP 仍与
+Android Debug APK 中的资源逐字节相同；同步选择器识别其 6 个 canonical content ID，不会预取
+重复的 1,261,962 bytes（约 1.20 MiB），APK 内置原图仍是运行时卡片。
 
 The AI entries record OpenAI service/output terms plus project review; they are not CC0, public
 domain, exclusive rights, absolute clearance, or proof that third-party rights cannot exist.
@@ -39,6 +43,12 @@ python3 ../android-wallpaper-app/tools/catalog/build_vc01_release_extension.py \
   --output content/v1/releases/2026-07-30.2 \
   --published-at 1785356253000
 ```
+
+`.4` 则由应用仓固定证据提交
+`3a456a6f50d72b2119712a772dc9c4719d526950` 中的受控、CMA 专用构建器
+`tools/catalog/build_cma_vc09d_release.py` 生成：它以 `.2` baseline、冻结的
+`cma-vc09d-review-2026-07-30.4.json`、来源快照和经验证的受控 ORIGINAL 为输入，导出
+`build/catalog/2026-07-30.4`。内容仓只逐字节发布该受审输出，不手工组装 `.4` release。
 
 The release also reuses the signed, self-authored parameter-only dynamic fixture first published
 in `2026-07-20.3`. Its
@@ -64,6 +74,10 @@ newer clients discover a later reviewed configuration without an APK update.
 当前不可变配置位于
 `content/v1/channels/2026-07-30.3/channel-config.json`，其 `current.json` 指针逐字节相同：
 
+### `.3 + .2` 原始发布证据
+
+以下 raw config、catalog SHA 和频道计数是 `.3` config 首次随 `.2` catalog 发布时的证据：
+
 ```text
 config bytes = 1,273
 config SHA-256 =
@@ -74,7 +88,8 @@ catalog SHA-256 =
 public matches = anime 6 / oriental 21 / landscape 14 / birds-and-flowers 5 / night 3
 ```
 
-新版发布必须从应用仓根目录调用冻结的跨端发布器，而不是使用此仓历史
+以下命令是上述 `.3 + .2` 原始发布的可复现记录。真正需要发布新的频道配置时，必须从应用仓根目录
+调用冻结的跨端发布器，而不是使用此仓历史
 `tools/build_channel_config.py`。后者不具备 UTF-16、signed `Long` 和完整 wire 边界的等价
 验证，不能用于新的受审配置。
 
@@ -96,6 +111,16 @@ python3 -m tools.catalog.publish_channel_config \
   --current-output ../android-wallpaper-content/content/v1/channels/current.json
 ```
 
+### `.3 + .4` 独立投影复核
+
+`.4` 不重发 `.3` config，也不推进 `current.json` 指针。应用仓固定证据提交
+`3a456a6f50d72b2119712a772dc9c4719d526950` 中的
+`content/reviews/vc09d-channel-projection-2026-07-30.4.json` 独立绑定 `.3` 的 raw config SHA
+`6126ff406089700f8f1296b9a2c765232e7f275c61bc5b6be1b86a137fb4943d` 与 `.4` catalog raw SHA
+`c865bd4c6701e80d5668a2d060446c766b6aea2f6361570d32f5d3978eb5828b`，并冻结运行时频道计数：
+anime 6 / oriental 23 / landscape 16 / birds-and-flowers 5 / night 3。这是独立的 `.3 + .4`
+投影复核，不是 config 发布操作。
+
 发布器会严格解析不可信 ChannelConfig 和 CatalogRelease raw JSON，拒绝非法 UTF-8/BOM、重复键、
 NaN/Infinity、超过 64 层、越界整数和孤立 surrogate；只接受精确映射到受控 content checkout 的
 `content/v1/releases/<releaseId>/release.json`、
@@ -116,8 +141,8 @@ regular/单硬链接 advisory `fcntl.flock` 锁：未持锁的残留文件可以
 不以旧文件阻断 orphan 恢复；不支持 `fcntl` 时发布器 fail closed。GitHub Pages 仍仅是 development
 staging。
 
-运行发布器自身离线回归：
+运行内容仓离线回归：
 
 ```text
-python3 -m unittest tools.catalog.test_publish_channel_config
+python3 -m unittest tools.test_catalog_release tools.test_build_channel_config
 ```

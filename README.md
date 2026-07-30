@@ -2,10 +2,12 @@
 
 Public staging content for `jzh000119/android-wallpaper-app`.
 
-- 运行时目录：`content/v1/releases/2026-07-30.5/release.json`
-- 运行时内容：28 个 static 与 3 个 live；末尾两个 VC-09E development 动态条目的静态回退和缩略图
-  复用 `.2` 已审核的 AI WebP
-- 频道指针：`content/v1/channels/current.json` 仍为 `2026-07-30.3`，本次 catalog 发布不修改它
+- 运行时目录：`content/v1/releases/2026-07-30.6/release.json`
+- 运行时内容：30 个 static 与 3 个 live；前 31 项逐字节语义保持 `2026-07-30.5`，末尾追加
+  已审核的项目原创 AI static `vc01-c13-mint-rooftop-breeze` 与
+  `vc01-c14-vermilion-cloud-terrace`
+- 频道指针：`content/v1/channels/current.json` 为 `2026-07-30.7`，以 `.6` 的真实 approved
+  static projection 发布五个既有 public 频道
 - 权利闸门：The Met 与 CMA 条目必须保留可核验的 public-domain/CC0 记录；项目原创 AI 条目必须
   保留生成条款记录、可见 AI 标签、人工复核、精确 asset hash、非独占/非绝对清权表述与下架状态
 - 生产边界：GitHub Pages 仅用于 development 验收；Android 正式版本必须使用国内 COS/CDN 配置
@@ -90,6 +92,69 @@ protected signing process and a production key rotation plan.
 Published assets are immutable and named by SHA-256. Do not replace files inside an existing
 release ID.
 
+## VC-09F `.6` catalog 发布
+
+`2026-07-30.6` 由应用仓的
+`tools/catalog/build_vc01_release_extension.py` 直接从不可变 `.5` 前缀、
+`content/reviews/vc01b-controlled-review-2026-07-30.6.json` 和 Android 的两张受审 WebP 构建；
+内容仓没有手工拼装 `release.json`。固定 `publishedAtEpochMillis` 是
+`1785389665126`：它严格晚于 `.5` 的 `1785370800000`，且在本次构建执行时从本机毫秒时钟取得。
+该 manifest 为 67,728 bytes，SHA-256 为
+`aaaf7ddf7985a3296c8a80a8b26a6c9a538fa179f47535342dcd9246807313b1`。
+
+运行时目录只含 `release.json` 和下列两张新增 WebP；它不会复制既有 `.5` 前缀已引用的历史资源：
+
+```text
+b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381.webp = 80,280 bytes
+59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3.webp = 68,594 bytes
+```
+
+两个条目都是 `aiGenerated`，保留 OpenAI 输出条款记录、可见 AI 标签、人工 approved、可用下架状态以及
+“非独占、非绝对清权”的边界；这仍是 GitHub Pages development 验收，并非生产分发。
+
+以下是**首次发布命令**（应用仓只读、内容仓为输出）。它只适用于
+`content/v1/releases/2026-07-30.6` 尚不存在时；该目录已经是不可变发布物，构建器会拒绝覆盖，
+不得为了重跑而删除或替换现有目录：
+
+```text
+../android-wallpaper-app/backend/.venv/bin/python \
+  ../android-wallpaper-app/tools/catalog/build_vc01_release_extension.py \
+  --base-release content/v1/releases/2026-07-30.5/release.json \
+  --review ../android-wallpaper-app/content/reviews/vc01b-controlled-review-2026-07-30.6.json \
+  --asset-root ../android-wallpaper-app/app/src/main/assets \
+  --release-id 2026-07-30.6 \
+  --asset-base-url https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-30.6/assets/ \
+  --output content/v1/releases/2026-07-30.6 \
+  --published-at 1785389665126
+```
+
+发布后应在新的临时空目录重建，并以 `cmp` 和 `shasum` 复核字节；下面的示例不会写入、删除或覆盖
+现有 `.6` 目录，也不包含自动删除命令：
+
+```text
+vc09f_verify_root=$(mktemp -d)
+../android-wallpaper-app/backend/.venv/bin/python \
+  ../android-wallpaper-app/tools/catalog/build_vc01_release_extension.py \
+  --base-release content/v1/releases/2026-07-30.5/release.json \
+  --review ../android-wallpaper-app/content/reviews/vc01b-controlled-review-2026-07-30.6.json \
+  --asset-root ../android-wallpaper-app/app/src/main/assets \
+  --release-id 2026-07-30.6 \
+  --asset-base-url https://jzh000119.github.io/android-wallpaper-content/content/v1/releases/2026-07-30.6/assets/ \
+  --output "$vc09f_verify_root/2026-07-30.6" \
+  --published-at 1785389665126
+cmp "$vc09f_verify_root/2026-07-30.6/release.json" content/v1/releases/2026-07-30.6/release.json
+cmp "$vc09f_verify_root/2026-07-30.6/assets/b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381.webp" \
+  content/v1/releases/2026-07-30.6/assets/b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381.webp
+cmp "$vc09f_verify_root/2026-07-30.6/assets/59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3.webp" \
+  content/v1/releases/2026-07-30.6/assets/59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3.webp
+shasum -a 256 "$vc09f_verify_root/2026-07-30.6/release.json" \
+  "$vc09f_verify_root/2026-07-30.6/assets/b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381.webp" \
+  "$vc09f_verify_root/2026-07-30.6/assets/59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3.webp" \
+  content/v1/releases/2026-07-30.6/release.json \
+  content/v1/releases/2026-07-30.6/assets/b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381.webp \
+  content/v1/releases/2026-07-30.6/assets/59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3.webp
+```
+
 ## Channel configuration
 
 Channel configuration is a separate endpoint, rather than an additive field in a catalog release.
@@ -100,7 +165,40 @@ is immutable; `content/v1/channels/current.json` is the intentionally mutable po
 newer clients discover a later reviewed configuration without an APK update.
 
 当前不可变配置位于
-`content/v1/channels/2026-07-30.3/channel-config.json`，其 `current.json` 指针逐字节相同：
+`content/v1/channels/2026-07-30.7/channel-config.json`，其 `current.json` 指针逐字节相同。
+它保留 `.3` 的 `wrap` 布局、5 个 public 频道、频道 ID、标题、过滤语义、`catalogOrder` 排序及顺序；
+仅将 config ID/发布时间推进到 `.7`。`publishedAtEpochMillis` 固定为 `1785389676621`，是本次发布前
+从本机毫秒时钟取得的值。该 config 为 1,273 bytes，SHA-256 为
+`fcd1594cc0c66500abe0be6f76ee633edbaec42762415fcb7d976ae28435931f`。
+
+独立投影复核输入位于
+`tools/channel-config/2026-07-30.7-projection-review.json`，精确绑定 `.7` config SHA、`.6` catalog
+SHA `aaaf7ddf7985a3296c8a80a8b26a6c9a538fa179f47535342dcd9246807313b1`，并冻结完整有序 ID 序列。
+官方发布器已复验 API 36 eligible static 结果为：`anime=8`、`oriental=24`、`landscape=17`、
+`birds-and-flowers=5`、`night=3`。它不是从同一运行临时重算的结果自证。
+
+发布 `.7` 时必须调用应用仓的跨端发布器，而不是历史
+`tools/build_channel_config.py`：
+
+```text
+cd ../android-wallpaper-app
+PYTHONPATH=. python3 -m tools.catalog.publish_channel_config \
+  --input ../android-wallpaper-content/tools/channel-config/2026-07-30.7.json \
+  --content-root ../android-wallpaper-content \
+  --catalog ../android-wallpaper-content/content/v1/releases/2026-07-30.6/release.json \
+  --projection-review ../android-wallpaper-content/tools/channel-config/2026-07-30.7-projection-review.json \
+  --expected-catalog-release-id 2026-07-30.6 \
+  --expected-catalog-sha256 aaaf7ddf7985a3296c8a80a8b26a6c9a538fa179f47535342dcd9246807313b1 \
+  --expected-public-channel-count anime=8 \
+  --expected-public-channel-count oriental=24 \
+  --expected-public-channel-count landscape=17 \
+  --expected-public-channel-count birds-and-flowers=5 \
+  --expected-public-channel-count night=3 \
+  --output ../android-wallpaper-content/content/v1/channels/2026-07-30.7/channel-config.json \
+  --current-output ../android-wallpaper-content/content/v1/channels/current.json
+```
+
+`.3` 仍作为历史不可变配置保留；以下是它的首次发布证据：
 
 ### `.3 + .2` 原始发布证据
 
@@ -172,5 +270,5 @@ staging。
 运行内容仓离线回归：
 
 ```text
-python3 -m unittest tools.test_catalog_release tools.test_build_channel_config
+python3 -m unittest discover -s tools -p 'test_*.py'
 ```

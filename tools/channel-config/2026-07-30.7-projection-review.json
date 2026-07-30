@@ -1,0 +1,93 @@
+{
+  "catalog": {
+    "releaseId": "2026-07-30.6",
+    "sha256": "aaaf7ddf7985a3296c8a80a8b26a6c9a538fa179f47535342dcd9246807313b1"
+  },
+  "configId": "2026-07-30.7",
+  "configSha256": "fcd1594cc0c66500abe0be6f76ee633edbaec42762415fcb7d976ae28435931f",
+  "publicChannels": [
+    {
+      "contentIds": [
+        "vc01-c01-cloud-ocean",
+        "vc01-c02-starlight-train-r2",
+        "vc01-c07-misty-flower-isles",
+        "vc01-c10-cherry-walk",
+        "vc01-c11-rain-neon-open",
+        "vc01-c12-lotus-pond-open-r2",
+        "vc01-c13-mint-rooftop-breeze",
+        "vc01-c14-vermilion-cloud-terrace"
+      ],
+      "id": "anime"
+    },
+    {
+      "contentIds": [
+        "met-44895-cloud-valley",
+        "met-54710-spring-landscape",
+        "met-45734-quails-and-millet",
+        "met-36191-clouded-mountain-village",
+        "met-49028-green-mountain-path",
+        "met-51786-quails-and-flowers",
+        "met-53221-summer-autumn-birds",
+        "met-53228-splashed-ink-mountain",
+        "met-54696-misty-riverside",
+        "met-57160-high-mountain-retreat",
+        "met-904735-peach-blossom",
+        "met-916570-autumn-mountain-retreat",
+        "met-42342-mountain-pavilion",
+        "met-44626-satin-mountains",
+        "met-51404-blossoms-and-birds",
+        "met-49071-cliffside-village",
+        "met-49451-mountain-boat",
+        "met-72603-misty-retreat",
+        "met-42403-flower-bird-vase",
+        "met-52225-cloud-valley-springs",
+        "vc01-c12-lotus-pond-open-r2",
+        "cma-1978-7-gentle-peaks",
+        "cma-1997-111-snow-landscape",
+        "vc01-c14-vermilion-cloud-terrace"
+      ],
+      "id": "oriental"
+    },
+    {
+      "contentIds": [
+        "met-44895-cloud-valley",
+        "met-54710-spring-landscape",
+        "met-36191-clouded-mountain-village",
+        "met-49028-green-mountain-path",
+        "met-53228-splashed-ink-mountain",
+        "met-54696-misty-riverside",
+        "met-57160-high-mountain-retreat",
+        "met-916570-autumn-mountain-retreat",
+        "met-42342-mountain-pavilion",
+        "met-44626-satin-mountains",
+        "met-49071-cliffside-village",
+        "met-49451-mountain-boat",
+        "met-72603-misty-retreat",
+        "met-52225-cloud-valley-springs",
+        "cma-1978-7-gentle-peaks",
+        "cma-1997-111-snow-landscape",
+        "vc01-c14-vermilion-cloud-terrace"
+      ],
+      "id": "landscape"
+    },
+    {
+      "contentIds": [
+        "met-45734-quails-and-millet",
+        "met-51786-quails-and-flowers",
+        "met-53221-summer-autumn-birds",
+        "met-51404-blossoms-and-birds",
+        "met-42403-flower-bird-vase"
+      ],
+      "id": "birds-and-flowers"
+    },
+    {
+      "contentIds": [
+        "vc01-c02-starlight-train-r2",
+        "vc01-c11-rain-neon-open",
+        "vc01-c12-lotus-pond-open-r2"
+      ],
+      "id": "night"
+    }
+  ],
+  "schemaVersion": 1
+}

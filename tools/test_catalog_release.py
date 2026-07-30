@@ -86,7 +86,7 @@ EXPECTED_CMA_ITEMS = {
         },
     },
 }
-EXPECTED_CURRENT_CHANNEL_SHA256 = "6126ff406089700f8f1296b9a2c765232e7f275c61bc5b6be1b86a137fb4943d"
+EXPECTED_CURRENT_CHANNEL_SHA256 = "fcd1594cc0c66500abe0be6f76ee633edbaec42762415fcb7d976ae28435931f"
 VC09E_RELEASE_ID = "2026-07-30.5"
 VC09E_RELEASE_DIR = RELEASES_ROOT / VC09E_RELEASE_ID
 VC09E_RELEASE_PATH = VC09E_RELEASE_DIR / "release.json"
@@ -103,6 +103,33 @@ VC09E_PACKAGES = {
         "sha256": "f4335246e0689fd787fc161133bc7dd7dbee61683d4c05e6b0ff5e31721bc118",
         "bytes": 1060,
     },
+}
+VC09F_RELEASE_ID = "2026-07-30.6"
+VC09F_RELEASE_DIR = RELEASES_ROOT / VC09F_RELEASE_ID
+VC09F_RELEASE_PATH = VC09F_RELEASE_DIR / "release.json"
+VC09F_RELEASE_SHA256 = "aaaf7ddf7985a3296c8a80a8b26a6c9a538fa179f47535342dcd9246807313b1"
+VC09F_RELEASE_BYTES = 67_728
+VC09F_RELEASE_PUBLISHED_AT = 1_785_389_665_126
+VC09F_STATIC_ITEMS = {
+    "vc01-c13-mint-rooftop-breeze": {
+        "sha256": "b752fc54121c1b43cfce20a6e3c42f0b74a839e757382c8041fb4ab44f416381",
+        "bytes": 80_280,
+        "title": "薄荷晚风",
+    },
+    "vc01-c14-vermilion-cloud-terrace": {
+        "sha256": "59f0cd79dd5b45d2c74272c694504eac0a95603224d334e0c3c0078673c085c3",
+        "bytes": 68_594,
+        "title": "绯霞云阶",
+    },
+}
+VC09F_CHANNEL_CONFIG_ID = "2026-07-30.7"
+VC09F_CHANNEL_CONFIG_PUBLISHED_AT = 1_785_389_676_621
+VC09F_CHANNEL_PROJECTION_COUNTS = {
+    "anime": 8,
+    "oriental": 24,
+    "landscape": 17,
+    "birds-and-flowers": 5,
+    "night": 3,
 }
 
 
@@ -301,7 +328,7 @@ class CatalogReleaseTest(unittest.TestCase):
         urls = set()
         for release_path in RELEASES_ROOT.glob("**/release.json"):
             urls.update(pages_asset_urls(json.loads(release_path.read_bytes())))
-        self.assertEqual(64, len(urls))
+        self.assertEqual(66, len(urls))
         for url in urls:
             resolve_pages_content_url(ROOT, url)
 
@@ -328,15 +355,10 @@ class CatalogReleaseTest(unittest.TestCase):
             with self.assertRaisesRegex(AssertionError, "symlink"):
                 resolve_pages_content_url(root, symlink_url)
 
-    def test_release_composition_and_current_channel_config_remain_pinned(self):
+    def test_vc09d_release_composition_remains_pinned(self):
         self.assertEqual(RELEASE_ID, self.release["releaseId"])
         self.assertEqual(28, sum(item["kind"] == "static" for item in self.release["items"]))
         self.assertEqual(1, sum(item["kind"] == "live" for item in self.release["items"]))
-        current_path = ROOT / "content" / "v1" / "channels" / "current.json"
-        pinned_path = ROOT / "content" / "v1" / "channels" / "2026-07-30.3" / "channel-config.json"
-        self.assertEqual(EXPECTED_CURRENT_CHANNEL_SHA256, sha256(current_path))
-        self.assertEqual(current_path.read_bytes(), pinned_path.read_bytes())
-        self.assertEqual("2026-07-30.3", json.loads(current_path.read_bytes())["configId"])
 
 
 class Vc09eDevelopmentReleaseTest(unittest.TestCase):
@@ -404,6 +426,127 @@ class Vc09eDevelopmentReleaseTest(unittest.TestCase):
                     },
                     items_by_id[content_id]["livePackage"],
                 )
+
+
+class Vc09fContentPublishTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.base = json.loads(VC09E_RELEASE_PATH.read_bytes())
+        cls.release_bytes = VC09F_RELEASE_PATH.read_bytes()
+        cls.release = json.loads(cls.release_bytes)
+
+    def test_release_is_byte_locked_and_runtime_tree_has_only_manifest_and_two_assets(self):
+        self.assertEqual(VC09F_RELEASE_BYTES, len(self.release_bytes))
+        self.assertEqual(VC09F_RELEASE_SHA256, hashlib.sha256(self.release_bytes).hexdigest())
+        expected_paths = {Path("release.json")} | {
+            Path("assets") / f"{item['sha256']}.webp"
+            for item in VC09F_STATIC_ITEMS.values()
+        }
+        self.assertEqual(expected_paths, validate_release_tree(VC09F_RELEASE_DIR, expected_paths))
+
+    def test_vc09e_prefix_is_exact_and_reviewed_static_tail_has_exact_assets(self):
+        self.assertEqual(VC09F_RELEASE_ID, self.release["releaseId"])
+        self.assertEqual(VC09F_RELEASE_PUBLISHED_AT, self.release["publishedAtEpochMillis"])
+        self.assertGreater(
+            self.release["publishedAtEpochMillis"], self.base["publishedAtEpochMillis"]
+        )
+        self.assertEqual(self.base["items"], self.release["items"][: len(self.base["items"])])
+        self.assertEqual(33, len(self.release["items"]))
+        self.assertEqual(30, sum(item["kind"] == "static" for item in self.release["items"]))
+        self.assertEqual(3, sum(item["kind"] == "live" for item in self.release["items"]))
+        self.assertEqual(list(VC09F_STATIC_ITEMS), [item["contentId"] for item in self.release["items"][-2:]])
+
+        for item in self.release["items"][-2:]:
+            with self.subTest(content_id=item["contentId"]):
+                expected = VC09F_STATIC_ITEMS[item["contentId"]]
+                asset = {
+                    "url": (
+                        f"{PAGES_CONTENT_PREFIX}v1/releases/{VC09F_RELEASE_ID}/assets/"
+                        f"{expected['sha256']}.webp"
+                    ),
+                    "mediaType": "webp",
+                    "bytes": expected["bytes"],
+                    "width": 1440,
+                    "height": 3200,
+                    "sha256": expected["sha256"],
+                }
+                self.assertEqual("static", item["kind"])
+                self.assertEqual("aiGenerated", item["origin"])
+                self.assertEqual(expected["title"], item["title"])
+                self.assertEqual(asset, item["thumbnail"])
+                self.assertEqual(asset, item["staticAsset"])
+                asset_path = VC09F_RELEASE_DIR / "assets" / f"{expected['sha256']}.webp"
+                self.assertEqual(expected["sha256"], sha256(asset_path))
+                self.assertEqual(expected["bytes"], asset_path.stat().st_size)
+                self.assertEqual((1440, 3200), webp_dimensions(asset_path))
+
+    def test_current_channel_config_is_vc09f_projection_of_the_published_catalog(self):
+        current_path = ROOT / "content" / "v1" / "channels" / "current.json"
+        immutable_path = (
+            ROOT / "content" / "v1" / "channels" / VC09F_CHANNEL_CONFIG_ID / "channel-config.json"
+        )
+        source_path = ROOT / "tools" / "channel-config" / f"{VC09F_CHANNEL_CONFIG_ID}.json"
+        review_path = (
+            ROOT
+            / "tools"
+            / "channel-config"
+            / f"{VC09F_CHANNEL_CONFIG_ID}-projection-review.json"
+        )
+        current_raw = current_path.read_bytes()
+        self.assertEqual(EXPECTED_CURRENT_CHANNEL_SHA256, sha256(current_path))
+        self.assertEqual(current_raw, immutable_path.read_bytes())
+        self.assertEqual(current_raw, source_path.read_bytes())
+        current = json.loads(current_raw)
+        previous = json.loads((ROOT / "tools" / "channel-config" / "2026-07-30.3.json").read_bytes())
+        self.assertEqual(VC09F_CHANNEL_CONFIG_ID, current["configId"])
+        self.assertEqual(VC09F_CHANNEL_CONFIG_PUBLISHED_AT, current["publishedAtEpochMillis"])
+        self.assertEqual(previous["layout"], current["layout"])
+        self.assertEqual(previous["channels"], current["channels"])
+
+        review = json.loads(review_path.read_bytes())
+        self.assertEqual(VC09F_CHANNEL_CONFIG_ID, review["configId"])
+        self.assertEqual(EXPECTED_CURRENT_CHANNEL_SHA256, review["configSha256"])
+        self.assertEqual(
+            {"releaseId": VC09F_RELEASE_ID, "sha256": VC09F_RELEASE_SHA256},
+            review["catalog"],
+        )
+        expected_ids = {entry["id"]: entry["contentIds"] for entry in review["publicChannels"]}
+        self.assertEqual(tuple(VC09F_CHANNEL_PROJECTION_COUNTS), tuple(expected_ids))
+        self.assertEqual(VC09F_CHANNEL_PROJECTION_COUNTS, {key: len(value) for key, value in expected_ids.items()})
+
+        eligible = [
+            item
+            for item in self.release["items"]
+            if item["kind"] == "static"
+            and item["rights"]["reviewStatus"] == "approved"
+            and item["rights"]["takedownStatus"] == "available"
+            and item["compatibility"]["minApi"] <= 36
+            and (
+                item["compatibility"]["maxApi"] is None
+                or item["compatibility"]["maxApi"] >= 36
+            )
+        ]
+        actual_ids = {}
+        for channel in current["channels"]:
+            if channel["access"] != "public":
+                continue
+            tag_filter = channel["filter"]
+            actual_ids[channel["id"]] = [
+                item["contentId"]
+                for item in eligible
+                if (
+                    not tag_filter["anyOfTags"]
+                    or any(tag in item["tags"] for tag in tag_filter["anyOfTags"])
+                )
+                and all(tag in item["tags"] for tag in tag_filter["allOfTags"])
+            ]
+        self.assertEqual(expected_ids, actual_ids)
+        self.assertEqual(
+            ["vc01-c13-mint-rooftop-breeze", "vc01-c14-vermilion-cloud-terrace"],
+            actual_ids["anime"][-2:],
+        )
+        self.assertEqual("vc01-c14-vermilion-cloud-terrace", actual_ids["oriental"][-1])
+        self.assertEqual("vc01-c14-vermilion-cloud-terrace", actual_ids["landscape"][-1])
 
 
 if __name__ == "__main__":

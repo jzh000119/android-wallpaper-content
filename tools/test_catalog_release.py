@@ -87,6 +87,23 @@ EXPECTED_CMA_ITEMS = {
     },
 }
 EXPECTED_CURRENT_CHANNEL_SHA256 = "6126ff406089700f8f1296b9a2c765232e7f275c61bc5b6be1b86a137fb4943d"
+VC09E_RELEASE_ID = "2026-07-30.5"
+VC09E_RELEASE_DIR = RELEASES_ROOT / VC09E_RELEASE_ID
+VC09E_RELEASE_PATH = VC09E_RELEASE_DIR / "release.json"
+VC09E_RELEASE_SHA256 = "968ca83bbc9e492e8aef09a26aed1f5a87ead7b5eed8206e43f3f763c7ca2396"
+VC09E_RELEASE_BYTES = 48716
+VC09E_PACKAGES = {
+    "vc09e-cloud-ocean-flow": {
+        "fallbackId": "vc01-c01-cloud-ocean",
+        "sha256": "ca71e4b56bc2da5e315df33f24688fc5432ceac163f89964fe1b4b9b66db62eb",
+        "bytes": 1037,
+    },
+    "vc09e-rain-neon-glimmer": {
+        "fallbackId": "vc01-c11-rain-neon-open",
+        "sha256": "f4335246e0689fd787fc161133bc7dd7dbee61683d4c05e6b0ff5e31721bc118",
+        "bytes": 1060,
+    },
+}
 
 
 def sha256(path: Path) -> str:
@@ -284,7 +301,7 @@ class CatalogReleaseTest(unittest.TestCase):
         urls = set()
         for release_path in RELEASES_ROOT.glob("**/release.json"):
             urls.update(pages_asset_urls(json.loads(release_path.read_bytes())))
-        self.assertEqual(62, len(urls))
+        self.assertEqual(64, len(urls))
         for url in urls:
             resolve_pages_content_url(ROOT, url)
 
@@ -320,6 +337,73 @@ class CatalogReleaseTest(unittest.TestCase):
         self.assertEqual(EXPECTED_CURRENT_CHANNEL_SHA256, sha256(current_path))
         self.assertEqual(current_path.read_bytes(), pinned_path.read_bytes())
         self.assertEqual("2026-07-30.3", json.loads(current_path.read_bytes())["configId"])
+
+
+class Vc09eDevelopmentReleaseTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.base = json.loads(RELEASE_PATH.read_bytes())
+        cls.release_bytes = VC09E_RELEASE_PATH.read_bytes()
+        cls.release = json.loads(cls.release_bytes)
+
+    def test_release_is_byte_locked_and_runtime_tree_has_only_manifest_and_two_packages(self):
+        self.assertEqual(VC09E_RELEASE_BYTES, len(self.release_bytes))
+        self.assertEqual(VC09E_RELEASE_SHA256, hashlib.sha256(self.release_bytes).hexdigest())
+        expected_paths = {Path("release.json")} | {
+            Path("assets") / f"{package['sha256']}.lwp"
+            for package in VC09E_PACKAGES.values()
+        }
+        self.assertEqual(expected_paths, validate_release_tree(VC09E_RELEASE_DIR, expected_paths))
+
+    def test_frozen_v4_items_remain_first_and_new_items_are_ai_generated_live_entries(self):
+        self.assertEqual(VC09E_RELEASE_ID, self.release["releaseId"])
+        self.assertEqual(1_785_370_800_000, self.release["publishedAtEpochMillis"])
+        self.assertEqual(self.base["items"], self.release["items"][: len(self.base["items"])])
+        self.assertEqual(31, len(self.release["items"]))
+        self.assertEqual(28, sum(item["kind"] == "static" for item in self.release["items"]))
+        self.assertEqual(3, sum(item["kind"] == "live" for item in self.release["items"]))
+        self.assertEqual(list(VC09E_PACKAGES), [item["contentId"] for item in self.release["items"][-2:]])
+
+        fallback_by_id = {item["contentId"]: item for item in self.base["items"]}
+        for item in self.release["items"][-2:]:
+            with self.subTest(content_id=item["contentId"]):
+                expected = VC09E_PACKAGES[item["contentId"]]
+                fallback = fallback_by_id[expected["fallbackId"]]
+                self.assertEqual("live", item["kind"])
+                self.assertEqual("aiGenerated", item["origin"])
+                self.assertEqual(fallback["aiMetadata"], item["aiMetadata"])
+                self.assertEqual(fallback["staticAsset"], item["fallbackAsset"])
+                self.assertEqual(fallback["thumbnail"], item["thumbnail"])
+                self.assertIn("/releases/2026-07-30.2/assets/", item["fallbackAsset"]["url"])
+                self.assertIn("/releases/2026-07-30.2/assets/", item["thumbnail"]["url"])
+                self.assertNotIn("cc0", item["rights"]["licenseName"].lower())
+                self.assertEqual("approved", item["rights"]["reviewStatus"])
+                self.assertEqual("available", item["rights"]["takedownStatus"])
+                self.assertIn(f"fallback={expected['fallbackId']}", item["rights"]["sourceItemId"])
+                self.assertEqual({"minApi": 26, "maxApi": None, "canvasWidth": 1440, "canvasHeight": 3200}, item["compatibility"])
+                self.assertEqual("low", item["powerRating"])
+
+    def test_signed_packages_match_manifest_byte_locks(self):
+        items_by_id = {item["contentId"]: item for item in self.release["items"]}
+        for content_id, expected in VC09E_PACKAGES.items():
+            with self.subTest(content_id=content_id):
+                package = VC09E_RELEASE_DIR / "assets" / f"{expected['sha256']}.lwp"
+                self.assertEqual(expected["sha256"], sha256(package))
+                self.assertEqual(expected["bytes"], package.stat().st_size)
+                self.assertEqual(
+                    {
+                        "url": (
+                            f"{PAGES_CONTENT_PREFIX}v1/releases/{VC09E_RELEASE_ID}/assets/"
+                            f"{expected['sha256']}.lwp"
+                        ),
+                        "mediaType": "liveWallpaperPackage",
+                        "bytes": expected["bytes"],
+                        "width": 1440,
+                        "height": 3200,
+                        "sha256": expected["sha256"],
+                    },
+                    items_by_id[content_id]["livePackage"],
+                )
 
 
 if __name__ == "__main__":

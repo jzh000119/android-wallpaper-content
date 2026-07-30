@@ -2,20 +2,21 @@
 
 Public staging content for `jzh000119/android-wallpaper-app`.
 
-- 运行时目录：`content/v1/releases/2026-07-30.4/release.json`
-- 运行时内容：28 个 static 壁纸与 1 个 live fixture；其中新增的 Cleveland Museum of Art
-  Open Access 两项 static 均为 CC0 记录
+- 运行时目录：`content/v1/releases/2026-07-30.5/release.json`
+- 运行时内容：28 个 static 与 3 个 live；末尾两个 VC-09E development 动态条目的静态回退和缩略图
+  复用 `.2` 已审核的 AI WebP
 - 频道指针：`content/v1/channels/current.json` 仍为 `2026-07-30.3`，本次 catalog 发布不修改它
 - 权利闸门：The Met 与 CMA 条目必须保留可核验的 public-domain/CC0 记录；项目原创 AI 条目必须
   保留生成条款记录、可见 AI 标签、人工复核、精确 asset hash、非独占/非绝对清权表述与下架状态
 - 生产边界：GitHub Pages 仅用于 development 验收；Android 正式版本必须使用国内 COS/CDN 配置
 
-`2026-07-30.4` 包含 28 项已审核的 static：20 项 The Met Open Access、6 项项目原创
-AI-assisted 条目，以及 2 项 Cleveland Museum of Art Open Access CC0 条目；另复用 1 个已签名的
-live fixture。两项 CMA 条目以 4 个 WebP 文件发布（每项 1080×2400 壁纸成品和 360×800 缩略图各一），
-文件名就是 SHA-256。
+`2026-07-30.5` 逐项保留 `.4` 的前 29 项：28 项已审核的 static（20 项 The Met Open Access、6 项
+项目原创 AI-assisted、2 项 Cleveland Museum of Art Open Access CC0）和 1 项既有 signed live fixture。
+仅在末尾追加 `vc09e-cloud-ocean-flow` 与 `vc09e-rain-neon-glimmer` 两项已签名 development live，
+故总数为 28 static + 3 live。`.5` 运行时目录只包含 `release.json` 与两个 `.lwp`，不复制历史图片；
+新动态的 fallback/thumbnail URL 保持指向 `.2` 的 SHA 命名 WebP。
 该 release 的 raw SHA-256 为
-`c865bd4c6701e80d5668a2d060446c766b6aea2f6361570d32f5d3978eb5828b`。
+`968ca83bbc9e492e8aef09a26aed1f5a87ead7b5eed8206e43f3f763c7ca2396`（48,716 bytes）。
 
 本次 `.4` 发布直接逐字节采用应用仓 `build/catalog/2026-07-30.4` 的受审产物；运行时目录只包含
 `release.json` 与这 4 个 WebP，不包含 draft manifest 或旧版本资产。项目原创的 6 个 WebP 仍与
@@ -50,8 +51,35 @@ python3 ../android-wallpaper-app/tools/catalog/build_vc01_release_extension.py \
 `cma-vc09d-review-2026-07-30.4.json`、来源快照和经验证的受控 ORIGINAL 为输入，导出
 `build/catalog/2026-07-30.4`。内容仓只逐字节发布该受审输出，不手工组装 `.4` release。
 
-The release also reuses the signed, self-authored parameter-only dynamic fixture first published
-in `2026-07-20.3`. Its
+`.5` 同样不手工组装 JSON，也不在内容仓生成或签名包。应用仓的受审公开 draft 为
+`app/src/test/resources/catalog/catalog-release-2026-07-30.5.json`，两个公开 Base64 fixture 解码后分别是：
+
+```text
+ca71e4b56bc2da5e315df33f24688fc5432ceac163f89964fe1b4b9b66db62eb.lwp = 1,037 bytes
+f4335246e0689fd787fc161133bc7dd7dbee61683d4c05e6b0ff5e31721bc118.lwp = 1,060 bytes
+```
+
+发布只能通过 `tools/publish_vc09e_development_release.py`：它验证 manifest/包的固定 SHA-256 和字节数，
+拒绝符号链接、额外包和已存在的 release ID，随后逐字节复制 `release.json` 与两个 `.lwp`。它不接收、
+读取或写入私钥，也不改 `channels/current.json`。发布器使用示例（输入为已审核的公开 builder 输出）：
+
+```text
+vc09e_tmp=$(mktemp -d)
+base64 -D -i ../android-wallpaper-app/contracts/fixtures/vc09e-cloud-ocean-flow-v1.lwp.b64 \
+  -o "$vc09e_tmp/ca71e4b56bc2da5e315df33f24688fc5432ceac163f89964fe1b4b9b66db62eb.lwp"
+base64 -D -i ../android-wallpaper-app/contracts/fixtures/vc09e-rain-neon-glimmer-v1.lwp.b64 \
+  -o "$vc09e_tmp/f4335246e0689fd787fc161133bc7dd7dbee61683d4c05e6b0ff5e31721bc118.lwp"
+python3 tools/publish_vc09e_development_release.py \
+  --manifest ../android-wallpaper-app/app/src/test/resources/catalog/catalog-release-2026-07-30.5.json \
+  --package "$vc09e_tmp/ca71e4b56bc2da5e315df33f24688fc5432ceac163f89964fe1b4b9b66db62eb.lwp" \
+  --package "$vc09e_tmp/f4335246e0689fd787fc161133bc7dd7dbee61683d4c05e6b0ff5e31721bc118.lwp"
+```
+
+新增动态条目的 `origin` 是 `aiGenerated`，保留各自 AI 回退条目的可见标签、生成元数据、OpenAI 输出条款、
+人工复核与下架状态；它们不是 CC0、公共领域、独占权利或绝对清权。其 development 签名公钥 SHA-256
+fingerprint 为 `3858c1920c417fbd32b66a5df2eb976f2a006a6548350f95c26e9cc15b5288a3`，仅用于开发验收。
+
+`.5` 仍复用最早在 `2026-07-20.3` 发布的 signed、self-authored parameter-only dynamic fixture。其
 `.lwp` package is signed with the development key whose public-key SHA-256 fingerprint is
 `d9ab0e13f3d39caf8ee30dcaf550a98925041c3cddd58227758a6788e000ec8c`.
 The signed manifest binds the scene bytes and the fallback-image SHA-256, so an asset replacement
